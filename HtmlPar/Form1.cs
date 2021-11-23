@@ -1,14 +1,6 @@
-﻿using HtmlAgilityPack;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HtmlPar
@@ -42,7 +34,6 @@ namespace HtmlPar
 
             
             var node = GisMeteo.UpdateNode();
-            //webBrowser.Url = new Uri($"https://www.gismeteo.com/#d_c3");
             labelTime.Text = node.SelectSingleNode("//div[@class='current-time']")?.InnerText.Trim();
             labelZone.Text = node.SelectSingleNode("//a[@class='city-link link']")?.InnerText.Trim();
             labelState.Text = node.SelectSingleNode("//div[@class='weather-description']")?.InnerText.Trim();
