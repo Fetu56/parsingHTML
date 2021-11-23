@@ -9,30 +9,20 @@ namespace HtmlPar
     {
         Timer timer;
         List<string> cityId;
-        WebBrowser webBrowser = new WebBrowser();
         public Form1()
         {
             InitializeComponent();
-            cityId = new List<string>() { "4944 Киев", "4368 Москва", "5077 Днепр", "4949 Львов" };
+            cityId = new List<string>() { "4944 Киев", "4368 Москва", "5077 Днепр", "4949 Львов", "4982 Одесса", "4079 Санкт-Петербург", "4248 Минкс", "Рига 4136" };     
             cityId.ForEach(x => comboBoxCity.Items.Add(x.Split(' ')[1]));
             timer = new Timer();
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
-            webBrowser.Location = new Point(tempLarge.Location.X + tempLarge.Width*2, tempLarge.Location.Y);
-            webBrowser.Size = new Size(50, 50);
             comboBoxCity.SelectedIndex = 0;
-            this.DoubleClick += Form1_DoubleClick;
         }
 
-        private void Form1_DoubleClick(object sender, EventArgs e)
-        {
-            UpdateData();
-        }
 
         private void UpdateData()
         {
-
-            
             var node = GisMeteo.UpdateNode();
             labelTime.Text = node.SelectSingleNode("//div[@class='current-time']")?.InnerText.Trim();
             labelZone.Text = node.SelectSingleNode("//a[@class='city-link link']")?.InnerText.Trim();
